@@ -25,15 +25,19 @@ app.post('/process-video', (req, res) => {
 
   // Create the ffmpeg command
   ffmpeg(inputFilePath)
+    //Convert the input file path to 360p
     .outputOptions('-vf', 'scale=-1:360') // 360p
+    // Once it's done, log and result status as completed 
     .on('end', function() {
         console.log('Processing finished successfully');
         res.status(200).send('Processing finished successfully');
     })
+    // if there was an error, print that out 
     .on('error', function(err: any) {
         console.log('An error occurred: ' + err.message);
         res.status(500).send('An error occurred: ' + err.message);
     })
+    // the the output to the output file path
     .save(outputFilePath);
 });
 
