@@ -4,12 +4,6 @@ import ffmpeg from "fluent-ffmpeg";
 
 // Initialize it by creating a instance of it 
 const app = express();
-const port = 3000; 
-
-import express from 'express';
-import ffmpeg from 'fluent-ffmpeg';
-
-const app = express();
 app.use(express.json());
 
 app.post('/process-video', (req, res) => {
@@ -41,25 +35,8 @@ app.post('/process-video', (req, res) => {
     .save(outputFilePath);
 });
 
+// Server Initialization 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    console.log(`Video processing service is listening on port ${port}`);
 });
-
-/*
-// Archieved. 
-// Simple route with app.get, where we have a request and a response 
-// This is a http get endpoint 
-app.get("/", (req, res) =>{ 
-    // Logic for that route, will be excecuted everytime that endpoint is called 
-    res.send("Hello World")
-
-
-// Start our server by listening on this port, then do some logging 
-app.listen(port, () => {
-    console.log(
-        `Video processing service listening at https://localhost:${port}`
-    );
-});
-});
-*/ 
